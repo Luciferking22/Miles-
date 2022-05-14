@@ -486,11 +486,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "help":
         buttons = [[
-            InlineKeyboardButton('😎 𝐚𝐝𝐦𝐢𝐧 ', callback_data='admin')
-            ],[
-            InlineKeyboardButton('🗳️ 𝐜𝐨𝐧𝐧𝐞𝐜𝐭 ', callback_data='coct'),
-            InlineKeyboardButton('👻 𝐟𝐢𝐥𝐭𝐞𝐫𝐬 ', callback_data='auto_manual'),
-            InlineKeyboardButton('📖 𝐠𝐭𝐫𝐚𝐧𝐬 ', callback_data='gtrans')
+            InlineKeyboardButton('Aᴅᴍɪɴ', callback_data='admin'),
+            InlineKeyboardButton('Fɪʟᴛᴇʀs', callback_data='auto_manual'),
+            InlineKeyboardButton('Gᴛʀᴀɴs', callback_data='gtrans'),
+            InlineKeyboardButton('Cᴏɴɴᴇᴄᴛ', callback_data='coct'),
             ],[
             InlineKeyboardButton('📄 𝐢𝐧𝐟𝐨 ', callback_data='info'),
             InlineKeyboardButton('🖥️ 𝐩𝐚𝐬𝐭𝐞 ', callback_data='paste')
@@ -564,8 +563,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.message.edit_text(
             text=script.ALIVE_TXT,
             reply_markup=reply_markup,
-
-parse_mode='html'
+            parse_mode='html'
         )
     elif query.data == "whois":
         buttons = [[
@@ -725,10 +723,8 @@ parse_mode='html'
     elif query.data == "auto_manual":
         buttons = [[
             InlineKeyboardButton('auto', callback_data='autofilter'),
-
-InlineKeyboardButton('manual', callback_data='manualfilter')
-
-],[
+            InlineKeyboardButton('manual', callback_data='manualfilter')
+            ],[
             InlineKeyboardButton('« Back', callback_data='help'),
             InlineKeyboardButton('Close ✗', callback_data='close_data')
         ]]
