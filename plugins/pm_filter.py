@@ -2,9 +2,6 @@
 import asyncio
 import re
 import ast
-import pytz
-import datetime
-
 from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
 from Script import script
 import pyrogram
@@ -29,18 +26,17 @@ BUTTONS = {}
 SPELL_CHECK = {}
 FILTER_MODE = {}
 
+import datetime
 now = datetime.datetime.now()
-tz = pytz.timezone('asia/kolkata')
-your_now = now.astimezone(tz)
-hour = your_now.hour
-if 0 <= hour <12:
-    lallus = "Gᴏᴏᴅ ᴍᴏʀɴɪɴɢ"
-elif 12 <= hour <15:
-    lallus = 'Gᴏᴏᴅ ᴀꜰᴛᴇʀɴᴏᴏɴ'
-elif 15 <= hour <20:
-    lallus = 'Gᴏᴏᴅ ᴇᴠᴇɴɪɴɢ'
+hour = now.hour
+
+if hour < 12:
+    greeting = "Good morning"
+elif hour < 18:
+    greeting = "Good afternoon"
 else:
-    lallus = 'Gᴏᴏᴅ ɴɪɢʜᴛ'
+    greeting = "Good night"
+
 
 @Client.on_message(filters.group & filters.text & ~filters.edited & filters.incoming)
 async def give_filter(client,message):
@@ -389,7 +385,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer(alert,show_alert=True)
 
     if query.data.startswith("file"):
-        FILE_CHANNEL_ID = int(-1001616427269)
+        FILE_CHANNEL_ID = int(-1001731956857)
         ident, file_id = query.data.split("#")
         files_ = await get_file_details(file_id)
         if not files_:
@@ -397,6 +393,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         files = files_[0]
         title = files.file_name
         size=get_size(files.file_size)
+        mention = query.from_user.mention
         f_caption=files.caption
         if CUSTOM_FILE_CAPTION:
             try:
@@ -404,8 +401,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
             except Exception as e:
                 logger.exception(e)
             f_caption=f_caption
+            size = size
+            mention = mention
         if f_caption is None:
             f_caption = f"{files.file_name}"
+            size = f"{files.file_size}"
+            mention = f"{query.from_user.mention}"
             
         try:
             if AUTH_CHANNEL and not await is_subscribed(client, query):
@@ -418,19 +419,23 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 send_file = await client.send_cached_media(
                     chat_id=FILE_CHANNEL_ID,
                     file_id=file_id,
-                    caption=f_caption
+                    caption=f'<b>{title}</b>\n\n<code>{size}</code>\n\n<code>=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</code>\n\n<b>{greeting} {query.from_user.mention}✨</b>\n\n<i>Because of copyright this file will be deleted from here within 5 minutesSo forward it to anywhere before downloading!</i>\n\n<i>കോപ്പിറൈറ്റ് ഉള്ളതുകൊണ്ട് ഈ ഫയൽ 5 മിനിറ്റിനുള്ളിൽ ഇവിടെനിന്നും ഡിലീറ്റ് ആകുന്നതാണ്അതുകൊണ്ട് ഇവിടെ നിന്നും മറ്റെവിടെക്കെങ്കിലും മാറ്റിയതിന് ശേഷം ഡൗൺലോഡ് ചെയ്യുക!</i>\n\n<b><b>🔰 Powered By:</b>{query.message.chat.title}</b>',
+                    reply_markup = InlineKeyboardMarkup(buttons)   
                     )
                 btn = [[
-                    InlineKeyboardButton("💥JOIN CHANNEL💥", url='https://t.me/+OwPc0ngwyCY4M2I1')
+                    InlineKeyboardButton("🔥 GET FILE 🔥", url=f'{send_file.link}')
+                    ],[
+                    InlineKeyboardButton("✘ Close ✘", callback_data='close_data')
                 ]]
                 reply_markup = InlineKeyboardMarkup(btn)
                 bb = await query.message.reply_text(
-                    text = f"Hi click the below link and download the movies🍿\n\nERROR? Click the join channel button and try again \n\n{send_file.link}",
-                    reply_markup = reply_markup
+                    text=script.ANYFILECAPTION_TXT.format(file_name=title, file_size=size, file_caption=f_caption),
+                reply_markup = reply_markup
                 )
                 await asyncio.sleep(300)
                 await send_file.delete()
                 await bb.delete()
+
         except UserIsBlocked:
             await query.answer('Unblock the bot mahn !',show_alert = True)
         except PeerIdInvalid:
@@ -452,7 +457,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         f_caption=files.caption
         if CUSTOM_FILE_CAPTION:
             try:
-                f_caption=CUSTOM_FILE_CAPTION.format(m = query.from_user.mention,lallus = lallus,file_name=title, file_size=size, file_caption=f_caption)
+                f_caption=CUSTOM_FILE_CAPTION.format(file_name=title, file_size=size, file_caption=f_caption)
             except Exception as e:
                 logger.exception(e)
                 f_caption=f_caption
@@ -998,12 +1003,22 @@ async def auto_filter(client, msg, spoll=False):
         BUTTONS[key] = search
         req = message.from_user.id if message.from_user else 0
         btn.append(
-            [InlineKeyboardButton(text=f"🗓 1/{round(int(total_results)/10)}",callback_data="pages"), InlineKeyboardButton(text="NEXT ⏩",callback_data=f"next_{req}_{key}_{offset}")]
+            [InlineKeyboardButton(text="NEXT ⏩",callback_data=f"next_{req}_{key}_{offset}")]
+        )
+        btn.append(
+            [InlineKeyboardButton(text=f"🔰 Pages 1/{round(int(total_results)/10)}🔰",callback_data="pages")]
         )
     else:
         btn.append(
-            [InlineKeyboardButton(text="🗓 1/1",callback_data="pages")]
+            [InlineKeyboardButton(text="🔰 Pages 1/1🔰",callback_data="pages")]
         )
+    btn.insert(0, [
+        InlineKeyboardButton(text=f"📂 File: {len(files)}", callback_data="fil"),
+        InlineKeyboardButton("🔆 Tips", callback_data="tip")
+    ])
+    btn.insert(0, [
+        InlineKeyboardButton(text=f"🔮 {search} 🔮", callback_data="so")
+    ])
     imdb = await get_poster(search, file=(files[0]).file_name) if IMDB else None
     if imdb:
         cap = IMDB_TEMPLATE.format(
