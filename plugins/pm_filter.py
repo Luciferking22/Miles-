@@ -124,18 +124,6 @@ async def next_page(bot, query):
             for file in files
         ]
 
-    btn.insert(0, 
-        [
-            InlineKeyboardButton(f'🔮 {search} 🔮', 'dupe')
-        ]
-    )
-    btn.insert(1,
-        [
-            InlineKeyboardButton(f'📁 Files: {len(files)}', 'dupe'),
-            InlineKeyboardButton(f'💫 Tips', 'tips')
-        ]
-    )
-
     if 0 < offset <= 10:
         off_set = 0
     elif offset == 0:
@@ -144,18 +132,37 @@ async def next_page(bot, query):
         off_set = offset - 10
     if n_offset == 0:
         btn.append(
-            [InlineKeyboardButton("⏪ BACK", callback_data=f"next_{req}_{key}_{off_set}"), InlineKeyboardButton(f"📃 Pages {round(int(offset)/10)+1} / {round(total/10)}", callback_data="pages")]
+            [InlineKeyboardButton("⏪ BACK", callback_data=f"next_{req}_{key}_{off_set}")]
+        )
+        btn.append(
+            [InlineKeyboardButton(f"🔰 Pages {round(int(offset)/10)+1} / {round(total/10)}🔰", callback_data="pages")]
         )
     elif off_set is None:
-        btn.append([InlineKeyboardButton(f"🗓 {round(int(offset)/10)+1} / {round(total/10)}", callback_data="pages"), InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{req}_{key}_{n_offset}")])
+        btn.append(
+            [InlineKeyboardButton(text="NEXT ⏩",callback_data=f"next_{req}_{key}_{offset}")]
+        )
+        btn.append(
+            [InlineKeyboardButton(text=f"🔰 Pages 1/{round(int(total_results)/10)}🔰",callback_data="pages")]
+        ) 
     else:
         btn.append(
             [
                 InlineKeyboardButton("⏪ BACK", callback_data=f"next_{req}_{key}_{off_set}"),
-                InlineKeyboardButton(f"🗓 {round(int(offset)/10)+1} / {round(total/10)}", callback_data="pages"),
                 InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{req}_{key}_{n_offset}")
-            ],
+            ], 
         )
+        btn.append(
+            [InlineKeyboardButton(f"🔰 Pages {round(int(offset)/10)+1} / {round(total/10)}🔰", callback_data="pages")]
+        )
+    btn.insert(0, 
+            [
+                InlineKeyboardButton(text=f"📂 File: {len(files)}", callback_data="fil"),
+                InlineKeyboardButton("🔆 Tips", callback_data="tip")
+            ])
+
+    btn.insert(0, [
+        InlineKeyboardButton(text=f"🔮 {search} 🔮", callback_data="so")
+    ])
     try:
         await query.edit_message_reply_markup( 
             reply_markup=InlineKeyboardMarkup(btn)
@@ -922,6 +929,26 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup,
             parse_mode='html'
         )
+    elif query.data == "fil":
+        await query.answer("This movie have total : {total_results} ", show_alert=True
+        )
+    elif query.data == "tip":
+        await query.answer("""=> Ask with Correct Spelling
+=> Don't ask movie's those are not released in OTT 🤧
+=> For better results :
+      - Movie name language
+      - Eg: Solo Malayalam""", show_alert=True
+        )
+    elif query.data == "so":
+        await query.answer(f"""🏷 Title: {search} 
+🎭 Genres: {genres} 
+📆 Year: {year} 
+🌟 Rating: {rating} 
+☀️ Languages : {languages} 
+📀 RunTime: {runtime} Minutes
+📆 Release Info : {release_date} 
+""",show_alert=True
+       )
     elif query.data == "stats":
         buttons = [[
             InlineKeyboardButton('« Back', callback_data='about'),
@@ -965,8 +992,21 @@ async def auto_filter(client, msg, spoll=False):
             search = message.text
             files, offset, total_results = await get_search_results(search.lower(), offset=0, filter=True)
             if not files:
-                if SPELL_CHECK_REPLY:
-                    return await advantage_spell_chok(msg)
+                if SPELL_MODE:  
+                    reply = search.replace(" ", "+")
+                    reply_markup = InlineKeyboardMarkup([[
+                        InlineKeyboardButton("🔮IMDB🔮", url=f"https://imdb.com/find?q={reply}"),
+                        InlineKeyboardButton("🪐 Reason", callback_data="reason")
+                    ]])
+                    imdb=await get_poster(search)
+                    if imdb and imdb.get('poster'):
+                        del3 = await message.reply_photo(photo=imdb.get('poster'), caption=SPELL_TXT.format(mention=message.from_user.mention, query=search, title=imdb.get('title'), genres=imdb.get('genres'), year=imdb.get('year'), rating=imdb.get('rating'), short=imdb.get('short_info'), url=imdb['url']), reply_markup=reply_markup) 
+                        asyncio.sleep(600)
+                        del3.delete()
+                        message.delete()
+                        return
+                    else:
+                        return
                 else:
                     return
         else:
@@ -1056,18 +1096,27 @@ async def auto_filter(client, msg, spoll=False):
         cap = f"Here is what i found for your query {search}"
     if imdb and imdb.get('poster'):
         try:
-            await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
-        except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-            pic = imdb.get('poster')
-            poster = pic.replace('.jpg', "._V1_UX360.jpg")
-            await message.reply_photo(photo=poster, caption=cap, reply_markup=InlineKeyboardMarkup(btn))
-        except Exception as e:
-            logger.exception(e)
-            await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
+            if SPELL_MODE:  
+                    reply = search.replace(" ", "+")
+                    reply_markup = InlineKeyboardMarkup([[
+                        InlineKeyboardButton("🔮IMDB🔮", url=f"https://imdb.com/find?q={reply}"),
+                        InlineKeyboardButton("🪐 Reason", callback_data="reason")
+                    ]])
+                    imdb=await get_poster(search)
+                    if imdb and imdb.get('poster'):
+                        del3 = await message.reply_photo(photo=imdb.get('poster'), caption=SPELL_TXT.format(mention=message.from_user.mention, query=search, title=imdb.get('title'), genres=imdb.get('genres'), year=imdb.get('year'), rating=imdb.get('rating'), short=imdb.get('short_info'), url=imdb['url']), reply_markup=reply_markup) 
+                        asyncio.sleep(600)
+                        del3.delete()
+                        message.delete()
+                        return
+                    else:
+                        return
+                else:
+                    return
+        else:
+            return
     else:
-        await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
-    if spoll:
-        await msg.message.delete()
+        message = msg.message.reply_to_message
         
 
 async def advantage_spell_chok(msg):
