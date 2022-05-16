@@ -28,12 +28,11 @@ class script(object):
 Note:- Give a user details
 
 •/whois :-give a user full details"""
-    ANYFILECAPTION_TXT = """**File Name:**
-`{file_name}`     
+    ANYFILECAPTION_TXT = """<b>📽 File Name:</b> <code> {file_name}</code>     
    
-**Size:** `{file_size}`
-Error? <a href='https://t.me/+5J5tOc5rv9FiMzA1'>CLICK HERE TO JOIN & TRY AGAIN!</a>"""
+<b>🗯 Size:</b> <code>{file_size}</code>
 
+<code>⏳ Error?</code> <a href='https://t.me/+5J5tOc5rv9FiMzA1'>CLICK HERE TO JOIN & TRY AGAIN!</a>'>CLICK HERE TO JOIN & TRY AGAIN!</a>"""
     LYRICS_TXT = """<b>Lyrics Module</b>
 - A module to find song lyrics 
 <b>Command</b>
