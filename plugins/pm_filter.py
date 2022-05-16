@@ -161,7 +161,7 @@ async def next_page(bot, query):
             ])
 
     btn.insert(0, [
-        InlineKeyboardButton(text=f"🔮 {search} 🔮", callback_data="so")
+        InlineKeyboardButton(text=f"〽️ {search} 〽️", callback_data="so")
     ])
     try:
         await query.edit_message_reply_markup( 
@@ -1062,7 +1062,7 @@ async def auto_filter(client, msg, spoll=False):
         InlineKeyboardButton("🔆 Tips", callback_data="tip")
     ])
     btn.insert(0, [
-        InlineKeyboardButton(text=f"🔮 {search} 🔮", callback_data="so")
+        InlineKeyboardButton(text=f"〽️ {search} 〽️", callback_data="so")
     ])
     imdb = await get_poster(search, file=(files[0]).file_name) if IMDB else None
     if imdb:
