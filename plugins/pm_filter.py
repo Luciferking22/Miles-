@@ -156,7 +156,7 @@ async def next_page(bot, query):
         )
     btn.insert(0, 
             [
-                InlineKeyboardButton(text=f"📂 File: {len(files)}", callback_data="fil"),
+                InlineKeyboardButton(text=f"🗂 File: {len(files)}", callback_data="fil"),
                 InlineKeyboardButton("🔆 Tips", callback_data="tip")
             ])
 
@@ -1058,7 +1058,7 @@ async def auto_filter(client, msg, spoll=False):
             [InlineKeyboardButton(text="🔰 Pages 1/1🔰",callback_data="pages")]
         )
     btn.insert(0, [
-        InlineKeyboardButton(text=f"📂 File: {len(files)}", callback_data="fil"),
+        InlineKeyboardButton(text=f"🗂 File: {len(files)}", callback_data="fil"),
         InlineKeyboardButton("🔆 Tips", callback_data="tip")
     ])
     btn.insert(0, [
