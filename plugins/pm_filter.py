@@ -995,12 +995,17 @@ async def auto_filter(client, msg, spoll=False):
                 if SPELL_MODE:  
                     reply = search.replace(" ", "+")
                     reply_markup = InlineKeyboardMarkup([[
-                        InlineKeyboardButton("🔮IMDB🔮", url=f"https://imdb.com/find?q={reply}"),
-                        InlineKeyboardButton("🪐 Reason", callback_data="reason")
+                        InlineKeyboardButton(text=f"{search}", url=f"https://imdb.com/find?q={reply}")
+                        ],[
+                        InlineKeyboardButton("🐿 Reason", callback_data="reason")
                     ]])
                     imdb=await get_poster(search)
                     if imdb and imdb.get('poster'):
-                        del3 = await message.reply_photo(photo=imdb.get('poster'), caption=SPELL_TXT.format(mention=message.from_user.mention, query=search, title=imdb.get('title'), genres=imdb.get('genres'), year=imdb.get('year'), rating=imdb.get('rating'), short=imdb.get('short_info'), url=imdb['url']), reply_markup=reply_markup) 
+                        del3 = await message.reply_photo(photo=imdb.get('poster'), caption="""📛 ᎢᏆᎢᏞᎬ : {search}
+🌟 ᎡᎪᎢᏆNᏩ : {rating}
+📅 ᎡᎬᏞᎬᎪᏚᎬ ᎠᎪᎢᎬ : {release_data} ({countries})
+🎭 ᏩᎬNᎡᎬ : {genres}
+🗒 ᏚᎢᎾᎡY ᏞᏆNᎬ : {plot}""", reply_markup=reply_markup) 
                         asyncio.sleep(600)
                         del3.delete()
                         message.delete()
@@ -1096,28 +1101,50 @@ async def auto_filter(client, msg, spoll=False):
         cap = f"Here is what i found for your query {search}"
     if imdb and imdb.get('poster'):
         try:
-            if SPELL_MODE:  
-                    reply = search.replace(" ", "+")
-                    reply_markup = InlineKeyboardMarkup([[
-                        InlineKeyboardButton("🔮IMDB🔮", url=f"https://imdb.com/find?q={reply}"),
-                        InlineKeyboardButton("🪐 Reason", callback_data="reason")
-                    ]])
-                    imdb=await get_poster(search)
-                    if imdb and imdb.get('poster'):
-                        del3 = await message.reply_photo(photo=imdb.get('poster'), caption=SPELL_TXT.format(mention=message.from_user.mention, query=search, title=imdb.get('title'), genres=imdb.get('genres'), year=imdb.get('year'), rating=imdb.get('rating'), short=imdb.get('short_info'), url=imdb['url']), reply_markup=reply_markup) 
-                        asyncio.sleep(600)
-                        del3.delete()
-                        message.delete()
-                        return
-                    else:
-                        return
-                else:
-                    return
-        else:
-            return
+            hehe = await message.reply_photo(photo=imdb.get('poster'), caption=cap[:1024], reply_to_message_id=reply_id, reply_markup=InlineKeyboardMarkup(btn))
+            await asyncio.sleep(600)
+            await hehe.delete()
+            await client.send_photo(
+                chat_id=message.chat.id,
+                photo="https://te.legra.ph/file/89c9ae7307f0c34dec77c.jpg",
+                caption=f"⚙️ Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️",
+                reply_to_message_id=message.message_id
+            )
+        except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+            pic = imdb.get('poster')
+            poster = pic.replace('.jpg', "._V1_UX360.jpg")
+            hmm = await message.reply_photo(photo=poster, caption=cap[:1024], reply_to_message_id=reply_id, reply_markup=InlineKeyboardMarkup(btn))
+            await asyncio.sleep(600)
+            await hmm.delete()
+            await client.send_photo(
+                chat_id=message.chat.id,
+                photo="https://te.legra.ph/file/89c9ae7307f0c34dec77c.jpg",
+                caption=f"⚙️ Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️",
+                reply_to_message_id=message.message_id
+            )
+        except Exception as e:
+            logger.exception(e)
+            fek = await message.reply_photo(photo="https://telegra.ph/file/82b5bbbab6d5e5593b6b2.jpg", caption=cap, reply_to_message_id=reply_id, reply_markup=InlineKeyboardMarkup(btn))
+            await asyncio.sleep(600)
+            await fek.delete()
+            await client.send_photo(
+                chat_id=message.chat.id,
+                photo="https://te.legra.ph/file/89c9ae7307f0c34dec77c.jpg",
+                caption=f"⚙️ Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️",
+                reply_to_message_id=message.message_id
+            )
     else:
-        message = msg.message.reply_to_message
-        
+        fuk = await message.reply_photo(photo="https://telegra.ph/file/8b42f6caf6ef5fd76766f.jpg", caption=cap, reply_to_message_id=reply_id, reply_markup=InlineKeyboardMarkup(btn))
+        await asyncio.sleep(600)
+        await fuk.delete()
+        await client.send_photo(
+            chat_id=message.chat.id,
+            photo="https://te.legra.ph/file/89c9ae7307f0c34dec77c.jpg",
+            caption=f"⚙️ Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️",
+            reply_to_message_id=message.message_id
+        )
+    if spoll:
+        await msg.message.delete()
 
 async def advantage_spell_chok(msg):
     query = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)", "", msg.text, flags=re.IGNORECASE) # plis contribute some common words 
