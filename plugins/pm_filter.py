@@ -104,7 +104,7 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"🚀[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
+                    text=f"📽 {file.file_name} 🗯 {get_size(file.file_size)}", callback_data=f'files#{file.file_id}'
                 ),
             ]
             for file in files
@@ -1003,7 +1003,7 @@ async def auto_filter(client, msg, spoll=False):
                     reply_markup = InlineKeyboardMarkup([[
                         InlineKeyboardButton(text=f"{search}", url=f"https://imdb.com/find?q={reply}")
                         ],[
-                        InlineKeyboardButton("🐿 Reason", callback_data="reason")
+                        InlineKeyboardButton("🐿 Reason", callback_data="tip")
                     ]])
                     imdb=await get_poster(search)
                     if imdb and imdb.get('poster'):
@@ -1036,7 +1036,7 @@ async def auto_filter(client, msg, spoll=False):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
+                    text=f"📽 {file.file_name} 🗯 {get_size(file.file_size)}", callback_data=f'files#{file.file_id}'
                 ),
             ]
             for file in files
