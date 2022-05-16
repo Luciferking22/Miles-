@@ -1007,11 +1007,18 @@ async def auto_filter(client, msg, spoll=False):
                     ]])
                     imdb=await get_poster(search)
                     if imdb and imdb.get('poster'):
-                        del3 = await message.reply_photo(photo=imdb.get('poster'), caption="""📛 ᎢᏆᎢᏞᎬ : {search}
-🌟 ᎡᎪᎢᏆNᏩ : {rating}
-📅 ᎡᎬᏞᎬᎪᏚᎬ ᎠᎪᎢᎬ : {release_data} ({countries})
-🎭 ᏩᎬNᎡᎬ : {genres}
-🗒 ᏚᎢᎾᎡY ᏞᏆNᎬ : {plot}""", reply_markup=reply_markup) 
+                        del3 = await message.reply_photo(photo=imdb.get('poster'), caption="""{search}
+
+🌟ɪᴍᴅʙ {rating} | ⏰ʀᴜɴ {runtime{ ᴍɪɴ |
+📆 {release_data}
+
+● {genres}
+● {languages}
+
+📖 ꜱᴛᴏʀʏ : {plot}
+
+
+★ ᴘᴏᴡᴇʀᴇᴅ ʙʏ {query.message.chat.title}""", reply_markup=reply_markup) 
                         asyncio.sleep(600)
                         del3.delete()
                         message.delete()
