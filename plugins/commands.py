@@ -64,16 +64,16 @@ async def start(client, message):
         btn = [
             [
                 InlineKeyboardButton(
-                    "📧 ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ 📧", url=invite_link.invite_link
+                    "🔌 Join Channel", url=invite_link.invite_link
                 ),
                 InlineKeyboardButton(
-                   "📁 {file.file_name}", callback_data=f'files#{file.file_id}'
-                ),
+                   "Try again ⏳", callback_data=f"{pre}#{file_id}"
+                )
             ]
         ]
-        await client.send_message(
-            chat_id=message.from_user.id,
-            text="**Please Join Main Updates Channel to use this Bot!**",
+        await message.reply_photo(
+            photo=random.choice(PICS),
+            caption="**You need to join my group for accessing the file, so kindly join 🙂**",
             reply_markup=InlineKeyboardMarkup(btn),
             parse_mode="markdown"
             )
