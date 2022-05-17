@@ -47,11 +47,6 @@ async def start(client, message):
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_chat_action("typing")
-        m=await message.reply_text("◈◇◇")
-        n=await m.edit("◈◈◇")
-        o=await n.edit("◈◈◈")
-        await asyncio.sleep(2)
-        await o.delete()
         await message.reply_photo(
             photo=random.choice(PICS),
             caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
@@ -93,12 +88,6 @@ async def start(client, message):
             InlineKeyboardButton('🔍sᴇᴀʀᴄʜ', switch_inline_query_current_chat='')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
-        await message.reply_chat_action("typing")
-        m=await message.reply_text("◈◇◇")
-        n=await m.edit("◈◈◇")
-        o=await n.edit("◈◈◈")
-        await asyncio.sleep(2)
-        await o.delete()
         await message.reply_chat_action("typing")
         await message.reply_photo(
             photo=random.choice(PICS),
