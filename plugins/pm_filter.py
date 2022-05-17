@@ -1003,7 +1003,7 @@ async def auto_filter(client, msg, spoll=False):
                     reply_markup = InlineKeyboardMarkup([[
                         InlineKeyboardButton(text=f"{search}", url=f"https://imdb.com/find?q={reply}")
                         ],[
-                        InlineKeyboardButton("🐿 Reason", callback_data="tip")
+                        InlineKeyboardButton("🪐 Reason", callback_data="tip")
                     ]])
                     imdb=await get_poster(search)
                     if imdb and imdb.get('poster'):
