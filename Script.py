@@ -28,6 +28,11 @@ class script(object):
 Note:- Give a user details
 
 •/whois :-give a user full details"""
+    EXTRA_TXT = """<b>Commands and Usage:</b>
+• /id - get id of a specifed user.
+• /info  - get information about a user.
+• /imdb  - get the film information from IMDb source.
+• /search  - get the film information from various sources."""
     ANYFILECAPTION_TXT = """<b>📽 File Name:</b> <code> {file_name}</code>     
    
 <b>🗯 Size:</b> <code>{file_size}</code>
