@@ -429,7 +429,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 send_file = await client.send_cached_media(
                     chat_id=FILE_CHANNEL_ID,
                     file_id=file_id,
-                    caption=f'<b>{title}</b>\n\n<code>{size}</code>\n\n<code>=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</code>\n\n<b>{greeting} {query.from_user.mention}✨</b>\n\n<i>Because of copyright this file will be deleted from here within 5 minutesSo forward it to anywhere before downloading!</i>\n\n<i>കോപ്പിറൈറ്റ് ഉള്ളതുകൊണ്ട് ഈ ഫയൽ 5 മിനിറ്റിനുള്ളിൽ ഇവിടെനിന്നും ഡിലീറ്റ് ആകുന്നതാണ്അതുകൊണ്ട് ഇവിടെ നിന്നും മറ്റെവിടെക്കെങ്കിലും മാറ്റിയതിന് ശേഷം ഡൗൺലോഡ് ചെയ്യുക!</i>\n\n<b><b>🔰 Powered By:</b>{query.message.chat.title}</b>',
+                    caption=f'<b>📽 {title}</b>\n\n<code>🗯 {size}</code>\n\n<code>=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</code>\n\n<b>{greeting} {query.from_user.mention}✨</b>\n\n<i>Because of copyright this file will be deleted from here within 5 minutesSo forward it to anywhere before downloading!</i>\n\n<i>കോപ്പിറൈറ്റ് ഉള്ളതുകൊണ്ട് ഈ ഫയൽ 5 മിനിറ്റിനുള്ളിൽ ഇവിടെനിന്നും ഡിലീറ്റ് ആകുന്നതാണ്അതുകൊണ്ട് ഇവിടെ നിന്നും മറ്റെവിടെക്കെങ്കിലും മാറ്റിയതിന് ശേഷം ഡൗൺലോഡ് ചെയ്യുക!</i>\n\n<b><b>🔰 Powered By:</b>{query.message.chat.title}</b>',
                     reply_markup = InlineKeyboardMarkup(buttons)   
                     )
                 btn = [[
@@ -935,6 +935,18 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "fil":
         await query.answer("This movie have total : {total_results} ", show_alert=True
         )
+    elif query.data == "reason":
+        await query.answer("""I couldn't find the file you requested 😕
+Try to do the following...
+
+=> Request with correct spelling
+
+=> Don't ask movies that are not released in OTT platforms
+
+=> Try to ask in [MovieName, Language] this format.
+
+=> Search on Google 😌""", show_alert=True
+        )
     elif query.data == "tip":
         await query.answer("""=> Ask with Correct Spelling
 => Don't ask movie's those are not released in OTT 🤧
@@ -1000,7 +1012,7 @@ async def auto_filter(client, msg, spoll=False):
                     reply_markup = InlineKeyboardMarkup([[
                         InlineKeyboardButton(text=f"{search}", url=f"https://imdb.com/find?q={reply}")
                         ],[
-                        InlineKeyboardButton("🪐 Reason", callback_data="tip")
+                        InlineKeyboardButton("🪐 Reason", callback_data="reason")
                     ]])
                     imdb=await get_poster(search)
                     if imdb and imdb.get('poster'):
@@ -1166,7 +1178,7 @@ async def advantage_spell_chok(msg):
         hmm = InlineKeyboardMarkup(
         [
             [
-                 InlineKeyboardButton("🪐 Reason", callback_data="tip")
+                 InlineKeyboardButton("🪐 Reason", callback_data="reason")
             ]
         ]
     )
@@ -1199,7 +1211,7 @@ async def advantage_spell_chok(msg):
         hmm = InlineKeyboardMarkup(
         [
             [
-                 InlineKeyboardButton("🪐 Reason", callback_data="tip")
+                 InlineKeyboardButton("🪐 Reason", callback_data="reason")
             ]
         ]
     )
