@@ -37,7 +37,6 @@ async def start(client, message):
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
         buttons = [[
-            buttons = [[
             InlineKeyboardButton('➕ 𝖠𝖽𝖽 𝗆𝖾 𝗍𝗈 𝗒𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 ➕', url='http://t.me/Angelina_v2_bot?startgroup=true')
             ],[
             InlineKeyboardButton('ʜᴇʟᴘ 💭', callback_data='help'),
@@ -46,6 +45,14 @@ async def start(client, message):
             InlineKeyboardButton('🔍sᴇᴀʀᴄʜ', switch_inline_query_current_chat='')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
+        await message.reply_chat_action("typing")
+        m=await message.reply_text("◈◇◇")
+        await asyncio.sleep(2)
+        n=await m.edit("◈◈◇")
+        await asyncio.sleep(2)
+        o=await n.edit("◈◈◈")
+        await asyncio.sleep(2)
+        await o.delete()
         await message.reply_chat_action("typing")
         await message.reply_photo(
             photo=random.choice(PICS),
@@ -88,6 +95,14 @@ async def start(client, message):
             InlineKeyboardButton('🔍sᴇᴀʀᴄʜ', switch_inline_query_current_chat='')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
+        await message.reply_chat_action("typing")
+        m=await message.reply_text("◈◇◇")
+        await asyncio.sleep(2)
+        n=await m.edit("◈◈◇")
+        await asyncio.sleep(2)
+        o=await n.edit("◈◈◈")
+        await asyncio.sleep(2)
+        await o.delete()
         await message.reply_chat_action("typing")
         await message.reply_photo(
             photo=random.choice(PICS),
