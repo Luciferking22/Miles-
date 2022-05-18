@@ -525,8 +525,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('Aʟɪᴠᴇ', callback_data='alive')
             ],[ 
             InlineKeyboardButton('Cᴏᴠɪᴅ', callback_data='corona'),
-            InlineKeyboardButton('Sᴛɪᴄᴋᴇʀ Iᴅ', callback_data='stickerid')
+            InlineKeyboardButton('Zᴏᴍʙɪᴇ', callback_data='zombies'),
+            InlineKeyboardButton('Lʏʀɪᴄs', callback_data='lyrics')
             ],[
+            InlineKeyboardButton('Sᴛɪᴄᴋᴇʀ Iᴅ', callback_data='stickerid'),
             InlineKeyboardButton('« Back', callback_data='start')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -568,6 +570,24 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.message.edit_text(
             text=script.ABOUT_TXT.format(temp.B_NAME),
             disable_web_page_preview=True,
+            reply_markup=reply_markup,
+            parse_mode='html'
+        )
+    elif query.data == "lyrics":
+        buttons = [[
+            InlineKeyboardButton('🔙 Back', callback_data='help')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.reply_chat_action("typing")
+        m=await query.message.reply_text("◈◇◇")
+        await asyncio.sleep(2)
+        n=await m.edit("◈◈◇")
+        await asyncio.sleep(2)
+        o=await n.edit("◈◈◈")
+        await asyncio.sleep(2)
+        await o.delete()
+        await query.message.edit_text(
+            text=script.LYRICS_TXT,
             reply_markup=reply_markup,
             parse_mode='html'
         )
