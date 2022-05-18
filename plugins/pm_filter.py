@@ -480,7 +480,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await client.send_cached_media(
             chat_id=query.from_user.id,
             file_id=file_id,
-            caption=f_caption
+            caption=f_caption,
+            reply_markup = InlineKeyboardMarkup(buttons)
             )
 
     elif query.data == "pages":
@@ -534,7 +535,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('Mᴏᴠɪᴇ', switch_inline_query_current_chat='')
             ],[
             InlineKeyboardButton('Sᴛɪᴄᴋᴇʀ Iᴅ', callback_data='stickerid'),
-            InlineKeyboardButton('« Back', callback_data='start')
+            InlineKeyboardButton('🔙 Back', callback_data='start')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.reply_chat_action("typing")
