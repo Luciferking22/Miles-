@@ -510,9 +510,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('Cᴏɴɴᴇᴄᴛ', callback_data='coct'),
             ],[
             InlineKeyboardButton('Exᴛʀᴀ', callback_data='exfd'),
-            InlineKeyboardButton('Gᴛʀᴀɴs', callback_data='gtrans'),
-            InlineKeyboardButton('Gᴛʀᴀɴs', callback_data='gtrans'),
-            InlineKeyboardButton('Gᴛʀᴀɴs', callback_data='gtrans')
+            InlineKeyboardButton('Cᴀʟᴄ', callback_data='calculator'),
+            InlineKeyboardButton('Cᴏᴜɴᴛʀʏ', callback_data='country'),
+            InlineKeyboardButton('Rᴇᴘᴏʀᴛ', callback_data='report')
             ],[
             InlineKeyboardButton('Gᴛʀᴀɴs', callback_data='gtrans'),
             InlineKeyboardButton('Pᴀsᴛᴇ', callback_data='paste'),
@@ -578,6 +578,24 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup,
             parse_mode='html'
         )
+    elif query.data == "report":
+        buttons = [[
+            InlineKeyboardButton('🔙 Back', callback_data='help')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.reply_chat_action("typing")
+        m=await query.message.reply_text("◈◇◇")
+        await asyncio.sleep(2)
+        n=await m.edit("◈◈◇")
+        await asyncio.sleep(2)
+        o=await n.edit("◈◈◈")
+        await asyncio.sleep(2)
+        await o.delete()
+        await query.message.edit_text(
+            text=script.REPORT_TXT,
+            reply_markup=reply_markup,
+            parse_mode='html'
+        )
     elif query.data == "lyrics":
         buttons = [[
             InlineKeyboardButton('🔙 Back', callback_data='help')
@@ -593,6 +611,42 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await o.delete()
         await query.message.edit_text(
             text=script.LYRICS_TXT,
+            reply_markup=reply_markup,
+            parse_mode='html'
+        )
+    elif query.data == "country":
+        buttons = [[
+            InlineKeyboardButton('🔙 Back', callback_data='help')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.reply_chat_action("typing")
+        m=await query.message.reply_text("◈◇◇")
+        await asyncio.sleep(2)
+        n=await m.edit("◈◈◇")
+        await asyncio.sleep(2)
+        o=await n.edit("◈◈◈")
+        await asyncio.sleep(2)
+        await o.delete()
+        await query.message.edit_text(
+            text=script.COUNTRY_TXT,
+            reply_markup=reply_markup,
+            parse_mode='html'
+        )
+    elif query.data == "calculator":
+        buttons = [[
+            InlineKeyboardButton('🔙 Back', callback_data='help')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.reply_chat_action("typing")
+        m=await query.message.reply_text("◈◇◇")
+        await asyncio.sleep(2)
+        n=await m.edit("◈◈◇")
+        await asyncio.sleep(2)
+        o=await n.edit("◈◈◈")
+        await asyncio.sleep(2)
+        await o.delete()
+        await query.message.edit_text(
+            text=script.CLCU_TXT,
             reply_markup=reply_markup,
             parse_mode='html'
         )
