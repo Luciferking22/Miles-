@@ -26,6 +26,14 @@ Note:- Give a user details
 • /info  - get information about a user.
 • /imdb  - get the film information from IMDb source.
 • /search  - get the film information from various sources."""
+    COUNTRY_TXT = """<b>here is the help for County information module</b>
+<b>I am a country information finder</b>
+<b>/country [countryname]</b> 
+<b>I can find information of any country of the world</b>"""
+    REPORT_TXT = """➤ 𝐇𝐞𝐥𝐩: Rᴇᴘᴏʀᴛ ⚠️
+𝚃𝚑𝚒𝚜 𝚌𝚘𝚖𝚖𝚊𝚗𝚍 𝚑𝚎𝚕𝚙𝚜 𝚢𝚘𝚞 𝚝𝚘 𝚛𝚎𝚙𝚘𝚛𝚝 𝚊 𝚖𝚎𝚜𝚜𝚊𝚐𝚎 𝚘𝚛 𝚊 𝚞𝚜𝚎𝚛 𝚝𝚘 𝚝𝚑𝚎 𝚊𝚍𝚖𝚒𝚗𝚜 𝚘𝚏 𝚝𝚑𝚎 𝚛𝚎𝚜𝚙𝚎𝚌𝚝𝚒𝚟𝚎 𝚐𝚛𝚘𝚞𝚙. 𝙳𝚘𝚗'𝚝 𝚖𝚒𝚜𝚞𝚜𝚎 𝚝𝚑𝚒𝚜 𝚌𝚘𝚖𝚖𝚊𝚗𝚍.
+➤ 𝐂𝐨𝐦𝐦𝐚𝐧𝐝𝐬 𝐚𝐧𝐝 𝐔𝐬𝐚𝐠𝐞:
+➪/report 𝗈𝗋 @admins - 𝖳𝗈 𝗋𝖾𝗉𝗈𝗋𝗍 𝖺 𝗎𝗌𝖾𝗋 𝗍𝗈 𝗍𝗁𝖾 𝖺𝖽𝗆𝗂𝗇𝗌 (𝗋𝖾𝗉𝗅𝗒 𝗍𝗈 𝖺 𝗆𝖾𝗌𝗌𝖺𝗀𝖾)."""
     ANYFILECAPTION_TXT = """<b>📽 File Name:</b> <code> {file_name}</code>     
    
 <b>🗯 Size:</b> <code>{file_size}</code>
@@ -42,6 +50,11 @@ Just for a rasam😂"""
 ➡️ /covid <code>(countryname)</code> <b>you can find a corona information of every country</b>
 
 ➡️ <b>example</b> : - /covid India"""
+    CLCU_TXT ="""<b>⊞ Calculator</b>
+
+A Module For Launch Calculator In Telegram
+
+<b> /calculator </b>"""
     STICKER_TXT ="""<b>Hey Buddy Send me a sticker and then I give U the sticker id (No Commands)</b>"""
     SONG_TXT ="""<b>SONG MODULE</b>
 Song Download
