@@ -1129,7 +1129,7 @@ Try to do the following...
        )
     elif query.data == "stats":
         buttons = [[
-            InlineKeyboardButton(🔙 Back', callback_data='about'),
+            InlineKeyboardButton('« Back', callback_data='about'),
             InlineKeyboardButton('Refresh ⧖', callback_data='rfrsh')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
