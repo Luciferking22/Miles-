@@ -487,13 +487,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.answer()
     elif query.data == "start":
         buttons = [[
-            InlineKeyboardButton('ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ', url='http://t.me/dqautofl_bot?startgroup=true')
+            InlineKeyboardButton('➕ 𝖠𝖽𝖽 𝗆𝖾 𝗍𝗈 𝗒𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 ➕', url='http://t.me/Angelina_v2_bot?startgroup=true')
             ],[
-            InlineKeyboardButton('sᴇᴀʀᴄʜ', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('sᴜᴘᴘᴏʀᴛ', url='https://t.me/EDIT_REPO')
+            InlineKeyboardButton('ʜᴇʟᴘ 💭', callback_data='help'),
+            InlineKeyboardButton("🧣ᴀʙᴏᴜᴛ", callback_data="about")
             ],[
-            InlineKeyboardButton('ʜᴇʟᴘ', callback_data='help'),
-            InlineKeyboardButton('ᴀʙᴏᴜᴛ', callback_data='about')
+            InlineKeyboardButton('🔍sᴇᴀʀᴄʜ', switch_inline_query_current_chat='')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
@@ -531,7 +530,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ],[ 
             InlineKeyboardButton('Cᴏᴠɪᴅ', callback_data='corona'),
             InlineKeyboardButton('Zᴏᴍʙɪᴇ', callback_data='zombies'),
-            InlineKeyboardButton('Lʏʀɪᴄs', callback_data='lyrics')
+            InlineKeyboardButton('Lʏʀɪᴄs', callback_data='lyrics'),
+            InlineKeyboardButton('Mᴏᴠɪᴇ', switch_inline_query_current_chat='')
             ],[
             InlineKeyboardButton('Sᴛɪᴄᴋᴇʀ Iᴅ', callback_data='stickerid'),
             InlineKeyboardButton('« Back', callback_data='start')
@@ -553,15 +553,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "about":
         buttons= [[
-            InlineKeyboardButton('status', callback_data='stats'),
-            InlineKeyboardButton('source', callback_data='source')
+            InlineKeyboardButton('🍁 Oᴡɴᴇʀ', url="https://t.me/PeterParkerspide"),
+            InlineKeyboardButton('🧩 Oᴛʜᴇʀ ʙᴏᴛs', url="https://t.me/peterparker088github")
             ],[
-            InlineKeyboardButton('search movie', switch_inline_query_current_chat='')
-            ],[
-            InlineKeyboardButton('help & commands', callback_data='help')
-            ],[
-            InlineKeyboardButton('« Back', callback_data='start'),
-            InlineKeyboardButton('Close ✗', callback_data='close_data')
+            InlineKeyboardButton('🔙 Back', callback_data='start')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.reply_chat_action("typing")
