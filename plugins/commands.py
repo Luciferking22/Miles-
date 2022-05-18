@@ -16,14 +16,14 @@ logger = logging.getLogger(__name__)
 @Client.on_message(filters.command("start"))
 async def start(client, message):
     if message.chat.type in ['group', 'supergroup']:
-        buttons = [
-            [
-                InlineKeyboardButton('𝚄𝙿𝙳𝙰𝚃𝙴𝚂', url='https://t.me/annaben_updates')
-            ],
-            [
-                InlineKeyboardButton('𝙷𝙴𝙻𝙿', url=f"https://t.me/{temp.U_NAME}?start=help"),
-            ]
-            ]
+        buttons = [[
+            InlineKeyboardButton('➕ 𝖠𝖽𝖽 𝗆𝖾 𝗍𝗈 𝗒𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 ➕', url='http://t.me/Angelina_v2_bot?startgroup=true')
+            ],[
+            InlineKeyboardButton('ʜᴇʟᴘ 💭', callback_data='help'),
+            InlineKeyboardButton("🧣ᴀʙᴏᴜᴛ", callback_data="about")
+            ],[
+            InlineKeyboardButton('🔍sᴇᴀʀᴄʜ', switch_inline_query_current_chat='')
+        ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply(script.START_TXT.format(message.from_user.mention if message.from_user else message.chat.title, temp.U_NAME, temp.B_NAME), reply_markup=reply_markup)
         await asyncio.sleep(2) # 😢 https://github.com/EvamariaTG/EvaMaria/blob/master/plugins/p_ttishow.py#L17 😬 wait a bit, before checking.
