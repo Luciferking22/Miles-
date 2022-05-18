@@ -24,6 +24,7 @@ pyshorteners
 aiofiles
 wget
 youtube-search-python==1.4.6
+countryinfo
 pyromod
 yt_dlp
 tswift
