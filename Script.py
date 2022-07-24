@@ -4,7 +4,7 @@ class script(object):
 ɪᴀᴍ ᴀ sɪᴍᴘʟᴇ ᴀᴜᴛᴏ ꜰɪʟᴛᴇʀ + ᴍᴏᴠɪᴇ sᴇᴀʀᴄʜ + ᴍᴀɴᴜᴀʟ ꜰɪʟᴛᴇʀ ʙᴏᴛ. ɪ ᴄᴀɴ ᴘʀᴏᴠɪᴅᴇ ᴍᴏᴠɪᴇs ɪɴ ᴛᴇʟᴇɢʀᴀᴍ ɢʀᴏᴜᴘs. ʏᴏᴜ ᴄᴀɴ sᴇᴀʀᴄʜ ᴍᴏᴠɪᴇs ᴠɪᴀ ɪɴʟɪɴᴇ. ɪ ᴄᴀɴ ᴀʟsᴏ ᴀᴅᴅ ꜰɪʟᴛᴇʀs ɪɴ ᴛᴇʟᴇɢʀᴀᴍ ɢʀᴏᴜᴘs. ᴊᴜsᴛ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴀɴᴅ ᴇɴᴊᴏʏ😌"""
     HELP_TXT = """<b>🚩 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴍᴏᴅᴜʟᴇs ʜᴇʟᴘ</b>"""
     ABOUT_TXT = """
-<b>🤖 ʙᴏᴛ ɴᴀᴍᴇ</b>: <a href='https://t.me/Gwen_Stacy_bot'>Sᴘɪᴅᴇʀ Gᴡᴇɴ 🕸</a> 
+<b>🤖 ʙᴏᴛ ɴᴀᴍᴇ</b>: <a href='http://t.me/angelina_v2_bot'>Sᴘɪᴅᴇʀ Gᴡᴇɴ 🕸</a> 
 
 <b>📝 ʟᴀɴɢᴜᴀɢᴇ </b>:  <a href='https://www.python.org/'>ᴘʏᴛʜᴏɴ</a>
 
@@ -12,7 +12,7 @@ class script(object):
 
 <b>📡 ʜᴏsᴛᴇᴅ ᴏɴ </b>: <a href='okteto.com'>ᴏᴋᴛᴇᴛᴏ</a>
 
-<b>👨‍💻 ᴅᴇᴠᴇʟᴏᴘᴇʀ </b>: <a href='https://t.me/PeterParkerspide'>ᴘᴇᴛᴇʀᴘᴀʀᴋᴇʀ ,🇮🇳 『OfFLiNe』</a>
+<b>👨‍💻 ᴅᴇᴠᴇʟᴏᴘᴇʀ </b>: <a href='https://t.me/mh_main'>ᴘᴇᴛᴇʀᴘᴀʀᴋᴇʀ ,🇮🇳 『OfFLiNe』</a>
 
 💡 <b>sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ </b>: <a href='https://t.me/nokiyirunnoippokitum'>ᴄʟɪᴄᴋ ʜᴇʀᴇ </a>"""
     SOURCE_TXT = """<b>NOTE:</b>
@@ -38,7 +38,7 @@ Note:- Give a user details
    
 <b>🗯 Size:</b> <code>{file_size}</code>
 
-<code>⏳ Error?</code> <a href='https://t.me/+5J5tOc5rv9FiMzA1'>CLICK HERE TO JOIN & TRY AGAIN!</a>'>CLICK HERE TO JOIN & TRY AGAIN!</a>"""
+<code>⏳ Error?</code> <a href='https://t.me/+NmhTxuQACl8zMmJl'>CLICK HERE TO JOIN & TRY AGAIN!</a>'>CLICK HERE TO JOIN & TRY AGAIN!</a>"""
     LYRICS_TXT = """<b>Lyrics Module</b>
 - A module to find song lyrics 
 <b>Command</b>
