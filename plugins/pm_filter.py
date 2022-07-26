@@ -433,7 +433,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     reply_markup = InlineKeyboardMarkup(buttons)   
                     )
                 btn = [[
-                    InlineKeyboardButton("🔥 GET FILE 🔥", url=f'{send_file.link}')
+                    InlineKeyboardButton("🔥 GET FILE 🔥", url = msg.link)
+
                     ],[
                     InlineKeyboardButton("✘ Close ✘", callback_data='close_data')
                 ]]
